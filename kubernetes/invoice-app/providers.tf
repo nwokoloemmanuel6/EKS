@@ -7,10 +7,10 @@ terraform {
   }
 }
 
-data "aws_eks_cluster" "hr-dev-eks-demo" {
+data "aws_eks_cluster" "hr-dev-TopG-cluster" {
   name = "hr-dev-TopG-cluster"
 }
-data "aws_eks_cluster_auth" "hr-dev-eks-demo_auth" {
+data "aws_eks_cluster_auth" "hr-dev-TopG-cluster_auth" {
   name = "hr-dev-TopG-cluster_auth"
 }
 provider "kubernetes" {
