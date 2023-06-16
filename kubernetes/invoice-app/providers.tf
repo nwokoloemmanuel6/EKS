@@ -14,7 +14,7 @@ data "aws_eks_cluster_auth" "hr-dev-eks-demo_auth" {
   name = "hr-dev-TopG-cluster_auth"
 }
 provider "kubernetes" {
-  host                   = data.aws_eks_cluster.hr-dev-eks-demo.endpoint
+  host                   = data.aws_eks_cluster.hr-dev-TopG-cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.hr-dev-TopG-cluster.certificate_authority[0].data)
   version          = "2.16.1"
   config_path = "~/.kube/config"
