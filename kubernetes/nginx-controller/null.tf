@@ -1,6 +1,6 @@
-resource "null_resource" "get_nlb_hostname" {
+/* resource "null_resource" "get_nlb_hostname" {
     provisioner "local-exec" {
-        command = "aws eks update-kubeconfig --name hr-dev-eks-demo --region eu-west-2 && kubectl get svc load-nginx  --namespace nginx-ingress -o jsonpath='{.status.loadBalancer.ingress[*].hostname}' > ${path.module}/lb_hostname.txt"
+        command = "aws eks update-kubeconfig --name hr-dev-TopG-cluster --region eu-west-2 && kubectl get svc load-nginx  --namespace nginx-ingress -o jsonpath='{.status.loadBalancer.ingress[*].hostname}' > ${path.module}/lb_hostname.txt"
     }
     depends_on = [
       helm_release.ingress_nginx
@@ -28,9 +28,9 @@ locals {
     named = "grafana.${var.domain_name}"
     namee = "result.${var.domain_name}"
   }
-}
+} */
 
-resource "aws_route53_record" "C-record" {
+/* resource "aws_route53_record" "C-record" {
   for_each        = local.instances
   allow_overwrite = true
   zone_id         = aws_route53_zone.hosted_zone.zone_id
@@ -57,7 +57,7 @@ resource "aws_acm_certificate" "acm_certificate" {
   lifecycle {
     create_before_destroy = true
   }
-}
+} */
 
 # get details about a route 53 hosted zone
 /* data "aws_route53_zone" "route53_zone" {
@@ -66,7 +66,7 @@ resource "aws_acm_certificate" "acm_certificate" {
 } */
 
 # create a record set in route 53 for domain validatation
-resource "aws_route53_record" "route53_record" {
+/* resource "aws_route53_record" "route53_record" {
     depends_on = [
       aws_route53_record.C-record
     ]
@@ -92,3 +92,4 @@ resource "aws_acm_certificate_validation" "acm_certificate_validation" {
   certificate_arn         = aws_acm_certificate.acm_certificate.arn
   validation_record_fqdns = [for record in aws_route53_record.route53_record : record.fqdn]
 }
+ */
