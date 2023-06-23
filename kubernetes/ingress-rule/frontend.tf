@@ -1,9 +1,10 @@
-resource "kubernetes_ingress_v1" "prome-ingress" {
+resource "kubernetes_ingress_v1" "frontend-service" {
   metadata {
-    name      = "promethues-grafana"
-    namespace = "prometheus"
+    name      = "frontend-service"
+    #namespace = "prometheu"
     labels = {
-      name = "prometheus"
+      name = "invoice-app-pod"
+      app = "invoice-app"
     }
     annotations = {
       "kubernetes.io/ingress.class" : "nginx"
@@ -12,14 +13,14 @@ resource "kubernetes_ingress_v1" "prome-ingress" {
 
   spec {
     rule {
-      host = "grafana.nwokolo.live"
+      host = "frontend.nwokolo.live"
       http {
         path {
           backend {
             service{
-              name = "prometheus-grafana"
+              name = "invoice-frontend-service"
               port {
-               number = 9090
+               number = 80
                }
           }
         }
