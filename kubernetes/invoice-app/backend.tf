@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "invoice-backend-deployment" {
       }
 
         env {
-         name = " DB_URL"
+         name = "DB_URL"
          value = "mongodb+srv://danielamadi000:2vKqCPTg1YJbh2yG@cluster1.b1yedfp.mongodb.net/?retryWrites=true&w=majority"
       }
 
