@@ -15,6 +15,7 @@ resource "kubernetes_deployment" "invoice-backend-deployment" {
         app = "invoice-app"
       }
     }
+
     template {
       metadata {
         name =  "invoice-app-pod"
@@ -27,6 +28,21 @@ resource "kubernetes_deployment" "invoice-backend-deployment" {
         container {
           image = "public.ecr.aws/m7q7a4s1/project-backend:latest"
           name  = "invoice-app"
+
+          env {
+         name = "CLIENT_URL"
+         value = "http://localhost:3000"
+      }
+
+        env {
+         name = "SERVER_URL"
+         value = "http://localhost:5000"
+      }
+
+        env {
+         name = " DB_URL"
+         value = "mongodb+srv://danielamadi000:2vKqCPTg1YJbh2yG@cluster1.b1yedfp.mongodb.net/?retryWrites=true&w=majority"
+      }
 
       port {
         container_port = 5000

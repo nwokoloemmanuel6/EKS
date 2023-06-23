@@ -28,6 +28,11 @@ resource "kubernetes_deployment" "invoice-frontend-deployment" {
           image = "public.ecr.aws/m7q7a4s1/project-frontend:latest"
           name  = "invoice-frontend-app"
 
+            env {
+         name = "REACT_APP_SERVER_UR"
+         value = "http://localhost:5000"
+      }
+
       port {
         container_port = 80
       }
